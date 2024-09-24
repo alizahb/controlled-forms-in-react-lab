@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function Bookshelf() {
-//state for books and newBook
+
 const [books, setBooks] = useState([
     { title: 'Fourth Wing', author: 'Rebecca Yarros' },
     { title: 'The Lion, the Witch and the Wardrobe', author: 'C.S. Lewis' },
@@ -12,24 +12,22 @@ const [newBook, setNewBook] = useState({
     author: ''
 }); 
 
-//handle input changes and update state 
 const handleInputChange = (e) => {
     const { name, value } = e.target; 
-     // Create a new version of the newBook object while maintaining other fields
+     
     setNewBook(previousBook => ({
-        ...previousBook, //copy existing values from the previous state
-        [name]:value //update the field corresponding to the name attriubte of the input 
+        ...previousBook, 
+        [name]:value
     }));
 }; 
 
 const handleSubmit = (e) => {
-e.preventDefault(); //stop default form submission action 
-//add new books to books aray 
+e.preventDefault();  
 setBooks(previousBooks => [
-    ...previousBooks, //keep previous books 
-    newBook //add the new book object 
+    ...previousBooks, 
+    newBook 
 ]); 
-//reset form 
+
 setNewBook({title: '', author: ''});
 };
 
@@ -40,7 +38,7 @@ return (
             <form onSubmit={handleSubmit}>
                 <input 
                 type= "text"
-                name="title" //add name attribute
+                name="title" 
                 placeholder="Title"
                 value={newBook.title}
                 onChange={handleInputChange} 
